@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dra. Laura Aires — Odontologia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage: #8aab96;
+    --sage-light: #c6dace;
+    --sage-pale: #edf4f0;
+    --cream: #faf8f4;
+    --bone: #f0ede6;
+    --dark: #1e1e1c;
+    --muted: #6b6b62;
+    --white: #ffffff;
+    --accent: #3d6b54;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(138,171,150,0.2);
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); font-style: italic; }
+
+  nav ul {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  nav ul a {
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--white) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 100px;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.08em;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: #2e5040 !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 4rem;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 400px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: #2e5040; transform: translateY(-1px); }
+
+  .btn-ghost {
+    border: 1px solid var(--sage);
+    color: var(--accent);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover { background: var(--sage-pale); }
+
+  .hero-visual {
+    position: relative;
+    overflow: hidden;
+    background: var(--bone);
+    animation: fadeIn 1.2s 0.4s ease both;
+  }
+
+  .hero-visual-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .hero-ornament {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .hero-stat-pill {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid rgba(138,171,150,0.3);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 8px 32px rgba(61,107,84,0.08);
+    animation: floatIn 1s ease both;
+  }
+
+  .pill-1 { bottom: 25%; left: -20px; animation-delay: 0.8s; }
+  .pill-2 { top: 25%; right: -10px; animation-delay: 1s; }
+
+  .pill-icon {
+    width: 36px; height: 36px;
+    background: var(--sage-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .pill-label { color: var(--muted); font-size: 0.72rem; }
+  .pill-value { font-weight: 500; color: var(--dark); font-size: 0.92rem; margin-top: 2px; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 4rem; }
+
+  .section-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  h2 em { font-style: italic; color: var(--accent); }
+
+  .section-intro {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── SOBRE ── */
+  #sobre {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .sobre-visual {
+    position: relative;
+  }
+
+  .sobre-card {
+    background: var(--sage-pale);
+    border-radius: 24px;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .sobre-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6rem;
+    font-weight: 300;
+    color: var(--sage);
+    opacity: 0.4;
+    font-style: italic;
+  }
+
+  .sobre-badge {
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
+    background: var(--accent);
+    color: var(--white);
+    border-radius: 20px;
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(61,107,84,0.2);
+  }
+
+  .badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    display: block;
+    line-height: 1;
+  }
+
+  .badge-text { font-size: 0.72rem; letter-spacing: 0.05em; opacity: 0.85; }
+
+  .sobre-content .creds {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .cred-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    border-left: 2px solid var(--sage-light);
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .cred-year {
+    font-weight: 500;
+    color: var(--accent);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    min-width: 40px;
+  }
+
+  /* ── SERVIÇOS ── */
+  #servicos { background: var(--cream); }
+
+  .servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .servico-card {
+    background: var(--white);
+    border: 1px solid rgba(138,171,150,0.2);
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    cursor: default;
+  }
+
+  .servico-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(61,107,84,0.1);
+    border-color: var(--sage-light);
+  }
+
+  .servico-icon {
+    width: 48px; height: 48px;
+    background: var(--sage-pale);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .servico-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+  }
+
+  .servico-card p {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── AGENDAMENTO ── */
+  #agendamento {
+    background: var(--bone);
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .agenda-form {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 2.5rem;
+    border: 1px solid rgba(138,171,150,0.2);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .field label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    border: 1px solid rgba(138,171,150,0.35);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--dark);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--sage);
+    background: var(--white);
+  }
+
+  .field textarea { resize: none; height: 90px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 100px;
+    padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 0.5rem;
+  }
+
+  .form-submit:hover { background: #2e5040; transform: translateY(-1px); }
+
+  .agenda-info { padding-top: 1rem; }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid rgba(138,171,150,0.2);
+  }
+
+  .info-item:last-child { border-bottom: none; }
+
+  .info-icon {
+    width: 44px; height: 44px;
+    background: var(--sage-pale);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .info-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sage); margin-bottom: 0.3rem; }
+  .info-value { font-size: 0.95rem; color: var(--dark); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  .footer-logo em { color: var(--sage-light); font-style: italic; }
+
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: var(--sage-light); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    #hero, #sobre, #agendamento { grid-template-columns: 1fr; }
+    .hero-visual { min-height: 320px; }
+    section { padding: 4rem 1.5rem; }
+    .servicos-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .pill-1, .pill-2 { display: none; }
+    .hero-text { padding: 3rem 1.5rem; }
+  }
+
+  @media (max-width: 560px) {
+    .servicos-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Dra. Laura <span>Aires</span></a>
+  <ul>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#agendamento" class="nav-cta">Agendar consulta</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Odontologia de excelência</p>
+    <h1>Sorrisos que<br><em>transformam</em><br>vidas</h1>
+    <p class="hero-sub">Cuidado personalizado, tecnologia moderna e um atendimento que vai muito além do sorriso. Bem-vindo à clínica da Dra. Laura Aires.</p>
+    <div class="hero-btns">
+      <a href="#agendamento" class="btn-primary">Agendar consulta</a>
+      <a href="#servicos" class="btn-ghost">Conhecer serviços</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-visual-inner">
+      <svg class="hero-ornament" viewBox="0 0 420 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="210" cy="260" r="200" fill="#c6dace" opacity="0.35"/>
+        <ellipse cx="210" cy="220" rx="90" ry="130" fill="#edf4f0" stroke="#8aab96" stroke-width="1.5"/>
+        <!-- tooth simplified -->
+        <path d="M170 160 C150 140 140 110 160 90 C175 75 200 78 210 90 C220 78 245 75 260 90 C280 110 270 140 250 160 L240 240 C237 260 230 270 210 270 C190 270 183 260 180 240 Z" fill="white" stroke="#3d6b54" stroke-width="2"/>
+        <path d="M195 270 C193 290 192 310 198 330 C203 345 217 345 222 330 C228 310 227 290 225 270" fill="#edf4f0" stroke="#8aab96" stroke-width="1.5"/>
+        <!-- decorative dots -->
+        <circle cx="90" cy="130" r="6" fill="#8aab96" opacity="0.5"/>
+        <circle cx="70" cy="160" r="4" fill="#8aab96" opacity="0.3"/>
+        <circle cx="340" cy="320" r="8" fill="#3d6b54" opacity="0.2"/>
+        <circle cx="360" cy="290" r="4" fill="#3d6b54" opacity="0.3"/>
+        <circle cx="310" cy="400" r="5" fill="#8aab96" opacity="0.4"/>
+        <!-- name -->
+        <text x="210" y="470" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="18" fill="#3d6b54" letter-spacing="3" font-style="italic">Laura Aires</text>
+        <line x1="130" y1="478" x2="180" y2="478" stroke="#8aab96" stroke-width="1"/>
+        <line x1="240" y1="478" x2="290" y2="478" stroke="#8aab96" stroke-width="1"/>
+        <text x="210" y="494" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#8aab96" letter-spacing="4">CIRURGIÃ-DENTISTA</text>
+      </svg>
+    </div>
+
+    <div class="hero-stat-pill pill-1">
+      <div class="pill-icon">🦷</div>
+      <div>
+        <div class="pill-label">Experiência</div>
+        <div class="pill-value">+8 anos</div>
+      </div>
+    </div>
+
+    <div class="hero-stat-pill pill-2">
+      <div class="pill-icon">⭐</div>
+      <div>
+        <div class="pill-label">Avaliação</div>
+        <div class="pill-value">5.0 — 200+ pacientes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-visual reveal">
+    <div class="sobre-card">
+      <span class="sobre-initials">LA</span>
+    </div>
+    <div class="sobre-badge">
+      <span class="badge-num">8+</span>
+      <span class="badge-text">anos de prática</span>
+    </div>
+  </div>
+
+  <div class="sobre-content reveal">
+    <p class="section-tag">Sobre mim</p>
+    <h2>Cuidado humano,<br><em>ciência precisa</em></h2>
+    <p class="section-intro">Sou a Dra. Laura Aires, cirurgiã-dentista com formação sólida e paixão genuína pelo que faço. Acredito que um sorriso saudável transforma não só a aparência, mas a confiança e a qualidade de vida das pessoas.</p>
+
+    <div class="creds">
+      <div class="cred-item">
+        <span class="cred-year">CRO</span>
+        <span>Registro no Conselho Regional de Odontologia</span>
+      </div>
+      <div class="cred-item">
+        <span class="cred-year">Espec.</span>
+        <span>Especialização em Dentística e Estética</span>
+      </div>
+      <div class="cred-item">
+        <span class="cred-year">Form.</span>
+        <span>Graduação em Odontologia — UFPR</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <p class="section-tag reveal">Serviços</p>
+    <h2 class="reveal">O que posso<br><em>fazer por você</em></h2>
+    <p class="section-intro reveal">Tratamentos modernos e humanizados, do preventivo ao estético, pensados para cada sorriso.</p>
+
+    <div class="servicos-grid">
+      <div class="servico-card reveal">
+        <div class="servico-icon">✨</div>
+        <h3>Clareamento Dental</h3>
+        <p>Resultados visíveis desde a primeira sessão com técnicas seguras e personalizadas para o seu sorriso.</p>
+      </div>
+      <div class="servico-card reveal">
+        <div class="servico-icon">💎</div>
+        <h3>Facetas & Lentes</h3>
+        <p>Transformação completa do sorriso com porcelana de alta resistência e resultado ultra-natural.</p>
+      </div>
+      <div class="servico-card reveal">
+        <div class="servico-icon">🦷</div>
+        <h3>Implantes</h3>
+        <p>Reposição de dentes com implantes osseointegráveis de última geração, com planejamento digital.</p>
+      </div>
+      <div class="servico-card reveal">
+        <div class="servico-icon">🌿</div>
+        <h3>Prevenção & Limpeza</h3>
+        <p>Profilaxia e orientação personalizada para manter a saúde bucal em dia com acompanhamento regular.</p>
+      </div>
+      <div class="servico-card reveal">
+        <div class="servico-icon">🔬</div>
+        <h3>Restaurações</h3>
+        <p>Restaurações estéticas em resina composta com acabamento impecável e combinação perfeita de cor.</p>
+      </div>
+      <div class="servico-card reveal">
+        <div class="servico-icon">😌</div>
+        <h3>Botox Facial</h3>
+        <p>Harmonização orofacial com toxina botulínica para bruxismo, sorriso gengival e estética facial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDAMENTO -->
+<section id="agendamento">
+  <div class="agenda-info reveal">
+    <p class="section-tag">Agendamento</p>
+    <h2>Marque sua<br><em>consulta</em></h2>
+    <p class="section-intro">Atendimento personalizado e horários flexíveis para você cuidar do seu sorriso sem complicação.</p>
+
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div>
+        <p class="info-label">Endereço</p>
+        <p class="info-value">Rua das Flores, 123 — Sala 45<br>Curitiba, PR</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">🕐</div>
+      <div>
+        <p class="info-label">Horários</p>
+        <p class="info-value">Segunda a Sexta: 8h – 18h<br>Sábado: 9h – 13h</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📱</div>
+      <div>
+        <p class="info-label">WhatsApp</p>
+        <p class="info-value">(41) 99999-9999</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📧</div>
+      <div>
+        <p class="info-label">E-mail</p>
+        <p class="info-value">contato@dralauraaires.com.br</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="agenda-form reveal">
+    <h3 style="font-family:'Cormorant Garamond',serif; font-weight:400; font-size:1.5rem; margin-bottom:1.5rem; color:var(--dark);">Preencha o formulário</h3>
+
+    <div class="form-row">
+      <div class="field">
+        <label>Nome</label>
+        <input type="text" placeholder="Seu nome">
+      </div>
+      <div class="field">
+        <label>Telefone</label>
+        <input type="tel" placeholder="(00) 00000-0000">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>E-mail</label>
+      <input type="email" placeholder="seu@email.com">
+    </div>
+
+    <div class="form-row">
+      <div class="field">
+        <label>Serviço</label>
+        <select>
+          <option value="">Selecionar…</option>
+          <option>Clareamento</option>
+          <option>Facetas / Lentes</option>
+          <option>Implantes</option>
+          <option>Limpeza</option>
+          <option>Restauração</option>
+          <option>Botox Facial</option>
+          <option>Consulta inicial</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Data preferida</label>
+        <input type="date">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Mensagem</label>
+      <textarea placeholder="Algum detalhe sobre o que você precisa…"></textarea>
+    </div>
+
+    <button class="form-submit" onclick="this.textContent='Enviado! ✓'; this.style.background='#3d6b54';">Enviar solicitação</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Dra. Laura <em>Aires</em></div>
+  <p>© 2025 — Todos os direitos reservados</p>
+  <p><a href="mailto:contato@dralauraaires.com.br">contato@dralauraaires.com.br</a></p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
